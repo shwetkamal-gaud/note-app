@@ -20,7 +20,6 @@ const Modal: React.FC<ModalProps> = ({  onClose, note, isEdit, setNote, onCreate
         isEdit ? onUpdate() : onCreate();
         onClose();
     }
-    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
     return ReactDOM.createPortal(
         <div className="fixed  inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.6)]">
             <div className="w-200 bg-white rounded-lg shadow-lg ">
