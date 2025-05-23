@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from "react-dom";
 import { X } from 'lucide-react';
-import ReactMde from 'react-mde';
-import ReactMarkdown from "react-markdown";
+import SimpleMDE from "react-simplemde-editor";
+import "easymde/dist/easymde.min.css";
 
 type ModalProps = {
     onClose: () => void;
@@ -42,14 +42,10 @@ const Modal: React.FC<ModalProps> = ({  onClose, note, isEdit, setNote, onCreate
                         value={note.title}
                         onChange={(e) => { setNote((prev) => ({ ...prev, title: e.target.value })) }}
                     />
-                    <ReactMde
+
+                    <SimpleMDE
                         value={note.content || ""}
-                        onChange={(value) => setNote(prev => ({ ...prev, content: value }))}
-                        selectedTab={selectedTab}
-                        onTabChange={setSelectedTab}
-                        generateMarkdownPreview={markdown =>
-                            Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
-                        }
+                        onChange={(value) => setNote((prev) => ({ ...prev, content: value }))}
                     />
                 </div>
                 <div className="flex justify-end gap-4 mb-2 me-2">
