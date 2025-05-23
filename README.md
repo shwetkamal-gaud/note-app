@@ -2,7 +2,7 @@
 
 This project was built as a solution to the technical assessment for the Frontend Developer position at TruPulse. It is a modern, responsive frontend application built with [React/Next.js/Vite/etc.], demonstrating best practices in UI/UX, state management, and code quality.
 
-## 🔧 Setup Instructions
+## Setup Instructions
 **Clone the repository:**
    ```bash
    git clone https://github.com/shwetkamal-gaud/note-app.git
