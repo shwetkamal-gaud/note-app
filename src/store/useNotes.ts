@@ -95,7 +95,7 @@ export const useNoteStore = create<NoteStore>((set, get) => ({
         try {
             if (!note.synced) {
                 set({ loading: true });
-                const res = await axios.post(API_URL, { ...note, synced: true })
+                 await axios.post(API_URL, { ...note, synced: true })
                 const updatedNote = { ...note, synced: true };
                 await dbUpdateNote(updatedNote);
                 set({
@@ -113,7 +113,7 @@ export const useNoteStore = create<NoteStore>((set, get) => ({
         set({ loading: true });
         for (const note of unsyncedNotes) {
             try {
-                const res = await axios.post(API_URL, { ...note, synced: true });
+                await axios.post(API_URL, { ...note, synced: true });
                 const updatedNote = { ...note, synced: true };
                 await dbUpdateNote(updatedNote);
 
