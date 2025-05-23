@@ -51,12 +51,12 @@ function App() {
               </svg>
             </div>
             <input value={search}
-              onChange={(e) => setSearch(e.target.value)} type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-l-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." />
+              onChange={(e) => setSearch(e.target.value)} type="search" id="default-search" className="block w-full  p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-l-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search Mockups, Logos..." />
           </div>
           <div className=' flex relative'>
             <button
               onClick={() => setIsDrop((prev) => !prev)}
-              className="shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-r-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+              className="shrink-0 z-10 inline-flex items-center  px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-r-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
               type="button"
             >
               {filter}
@@ -78,7 +78,7 @@ function App() {
             </button>
             {isDrop && <div
 
-              className="z-10 absolute top-15 bg-white divide-y divide-gray-100 rounded-r-lg shadow-sm w-44 dark:bg-gray-700"
+              className="z-25  absolute top-12 bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700"
             >
               <ul
                 className="py-2 text-sm text-gray-700 dark:text-gray-200"
@@ -149,10 +149,12 @@ function App() {
                 className='p-4 border rounded grid grid-cols-4 p-2 hover:bg-gray-100 '
 
               >
-                <h2 className='text-xl font-bold'>{note.title}</h2>
-                <ReactMarkdown>{note.content}</ReactMarkdown>
+                <h2 className='text-xl font-bold line-clamp overflow-hidden break-words'>{note.title}</h2>
+                <div className='line-clamp overflow-hidden  break-words'>
+                  <ReactMarkdown>{note.content}</ReactMarkdown>
+                </div>
                 <p className='text-xs text-gray-400 mt-1'>Last updated: {new Date(note.updatedAt).toLocaleString()}</p>
-                <div className='flex items-center gap-2 justify-end'>
+                <div className='flex items-center  md:flex-row flex-col gap-2 justify-end'>
                   <button onClick={() => {
                     setIsEdit(true);
                     setNote({ title: note.title, content: note.content });
@@ -182,7 +184,7 @@ function App() {
               <p className="text-center text-gray-500 mt-4">No notes found.</p>
             )}
           </div> :
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
+          <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-4'>
             {filteredNotes.map((note) => (
               <div
                 key={note.id}
@@ -195,11 +197,13 @@ function App() {
                 }}
               >
                 <div className='flex flex-col gap-1'>
-                  <h2 className='text-lg font-semibold'>{note.title}</h2>
-                  <ReactMarkdown>{note.content}</ReactMarkdown>
+                  <h2 title={note.title} className='text-xl font-bold line-clamp overflow-hidden break-words'>{note.title}</h2>
+                  <div className='line-clamp overflow-hidden break-words'>
+                    <ReactMarkdown>{note.content}</ReactMarkdown>
+                  </div>
                   <p className='text-xs text-gray-400 mt-1'>Last updated: {new Date(note.updatedAt).toLocaleString()}</p>
                 </div>
-                <div className='flex items-start gap-2 '>
+                <div className='flex  md:items-start items-end md:flex-row flex-col gap-2 '>
                   <button onClick={() => {
                     setIsEdit(true);
                     setNote({ title: note.title, content: note.content });
@@ -228,7 +232,7 @@ function App() {
           </div>
         }
       </div>
-      {isModal && <Modal onClose={() => setIsModal((prev) => !prev)}  isEdit={isEdit} note={note} setNote={setNote} onCreate={() => createNote(note)} onUpdate={() => currentNote && updateNote({ ...note, id: currentNote.id })} />}
+      {isModal && <Modal onClose={() => setIsModal((prev) => !prev)} isEdit={isEdit} note={note} setNote={setNote} onCreate={() => createNote(note)} onUpdate={() => currentNote && updateNote({ ...note, id: currentNote.id })} />}
     </div>
   )
 }
