@@ -1,3 +1,35 @@
+# TruPulse Frontend Developer Assessment
+
+This project was built as a solution to the technical assessment for the Frontend Developer position at TruPulse. It is a modern, responsive frontend application built with [React/Next.js/Vite/etc.], demonstrating best practices in UI/UX, state management, and code quality.
+
+## Setup Instructions
+**Clone the repository:**
+   ```bash
+   git clone https://github.com/shwetkamal-gaud/note-app.git
+   cd note-app
+   ```
+**Install dependencies:**
+  ```bash
+   npm install
+   ```
+**Run the development server:**
+  ```bash
+   npm run dev
+   ```
+**Live Preview**
+```bash
+https://note-app-theta-one.vercel.app/
+```
+
+**Design & Tradeoffs**
+<ul>
+  <li>Created Modal compononet with edit and delete functionality and used in App file</li>
+  <li> I used Tailwind CSS and TypeScript for rapid development, type safety and a consistent design system.</li>
+  <li>I used Zustand to manage global state</li>
+  <li>Chose to prioritize functionality and user experience over extensive test coverage due to time constraints.</li>
+</ul>
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
