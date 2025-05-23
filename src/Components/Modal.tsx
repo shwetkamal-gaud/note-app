@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from "react-dom";
 import { X } from 'lucide-react';
+import ReactMde from 'react-mde';
+import ReactMarkdown from "react-markdown";
 
 type ModalProps = {
     isOpen: boolean;
@@ -19,6 +21,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, note, isEdit, setNote, o
         isEdit ? onUpdate() : onCreate();
         onClose();
     }
+    const [selectedTab, setSelectedTab] = React.useState<"write" | "preview">("write");
     return ReactDOM.createPortal(
         <div className="fixed  inset-0 z-50 flex items-center justify-center bg-[rgba(0,0,0,0.6)]">
             <div className="w-200 bg-white rounded-lg shadow-lg ">
@@ -40,14 +43,15 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, note, isEdit, setNote, o
                         value={note.title}
                         onChange={(e) => { setNote((prev) => ({ ...prev, title: e.target.value })) }}
                     />
-                    <textarea
-                        placeholder="Content"
-                        className="w-full border border-gray-300 rounded-lg p-2 mb-4"
-                        value={note.content}
-                        onChange={(e) => setNote((prev) => ({ ...prev, content: e.target.value }))}
-                        rows={4}
-                        maxLength={300}
-                    ></textarea>
+                    <ReactMde
+                        value={note.content || ""}
+                        onChange={(value) => setNote(prev => ({ ...prev, content: value }))}
+                        selectedTab={selectedTab}
+                        onTabChange={setSelectedTab}
+                        generateMarkdownPreview={markdown =>
+                            Promise.resolve(<ReactMarkdown>{markdown}</ReactMarkdown>)
+                        }
+                    />
                 </div>
                 <div className="flex justify-end gap-4 mb-2 me-2">
                     <button

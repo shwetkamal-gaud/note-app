@@ -6,6 +6,7 @@ import { useNoteStore } from './store/useNotes'
 import type { Note } from './types'
 import { Delete, EditIcon, Grid, List, } from 'lucide-react'
 import { toast } from 'react-toastify'
+import ReactMarkdown from "react-markdown";
 
 
 function App() {
@@ -134,12 +135,12 @@ function App() {
           )}
         </div>
         {isList ?
-          <div className='flex flex-col gap-3 mt-4'>
-            <div className='bg-white shadow grid grid-cols-4 p-2'>
+          <div className='flex flex-col gap-3 bg-white shadow overflow-y-auto max-h-[80vh] p-2 mt-4'>
+            <div className='bg-white sticky top-0 z-20 shadow grid grid-cols-4 p-2'>
               <p>Title</p>
               <p>Content</p>
               <p>UpdatedAt</p>
-              <p className='text-end'>Actions</p>
+              <p className='text-end pe-2'>Actions</p>
 
             </div>
             {filteredNotes.map((note) => (
@@ -149,7 +150,7 @@ function App() {
 
               >
                 <h2 className='text-xl font-bold'>{note.title}</h2>
-                <p className='text-sm text-gray-600 line-clamp-2'>{note.content}</p>
+                <ReactMarkdown>{note.content}</ReactMarkdown>
                 <p className='text-xs text-gray-400 mt-1'>Last updated: {new Date(note.updatedAt).toLocaleString()}</p>
                 <div className='flex items-center gap-2 justify-end'>
                   <button onClick={() => {
@@ -195,7 +196,7 @@ function App() {
               >
                 <div className='flex flex-col gap-1'>
                   <h2 className='text-lg font-semibold'>{note.title}</h2>
-                  <p className='text-xs text-gray-600 line-clamp-2'>{note.content}</p>
+                  <ReactMarkdown>{note.content}</ReactMarkdown>
                   <p className='text-xs text-gray-400 mt-1'>Last updated: {new Date(note.updatedAt).toLocaleString()}</p>
                 </div>
                 <div className='flex items-start gap-2 '>
