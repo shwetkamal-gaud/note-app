@@ -5,7 +5,6 @@ import ReactMde from 'react-mde';
 import ReactMarkdown from "react-markdown";
 
 type ModalProps = {
-    isOpen: boolean;
     onClose: () => void;
     note: { title: string, content?: string }
     setNote: React.Dispatch<React.SetStateAction<{ title: string, content?: string }>>
@@ -15,7 +14,7 @@ type ModalProps = {
 };
 
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, note, isEdit, setNote, onCreate, onUpdate }) => {
+const Modal: React.FC<ModalProps> = ({  onClose, note, isEdit, setNote, onCreate, onUpdate }) => {
     const handleSubmit = () => {
         if (!note.title.trim()) return; 
         isEdit ? onUpdate() : onCreate();

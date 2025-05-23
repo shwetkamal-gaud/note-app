@@ -228,7 +228,7 @@ function App() {
           </div>
         }
       </div>
-      {isModal && <Modal onClose={() => setIsModal((prev) => !prev)} isOpen={isModal} isEdit={isEdit} note={note} setNote={setNote} onCreate={() => createNote(note)} onUpdate={() => currentNote && updateNote({ ...note, id: currentNote.id })} />}
+      {isModal && <Modal onClose={() => setIsModal((prev) => !prev)}  isEdit={isEdit} note={note} setNote={setNote} onCreate={() => createNote(note)} onUpdate={() => currentNote && updateNote({ ...note, id: currentNote.id })} />}
     </div>
   )
 }
